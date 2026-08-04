@@ -215,24 +215,6 @@ html {
     50% { transform: translateY(-5px); }
 }
 
-.scroll-indicator {
-    position: absolute;
-    bottom: 0.1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: bounce-vertical 2s ease-in-out infinite;
-}
-
-.scroll-indicator i {
-    font-size: 2rem;
-    color: #000;
-}
-
-@keyframes bounce-vertical {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-10px); }
-}
-
 /* Education Section */
 .education-section {
     padding: 5rem 0;
