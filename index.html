@@ -1,523 +1,586 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preeth Ravani - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preeth — Full-Stack Developer</title>
+<meta name="description" content="Preeth — full-stack developer building clean, technical, minimal digital experiences.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=IBM+Plex+Mono:wght@400;500;600&family=Doto:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cloudflare.com" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Hero Section -->
-    <section id="hero" class="hero-section">
-        <div class="parallax-bg">
-            <div class="floating-shape shape-1"></div>
-            <div class="floating-shape shape-2"></div>
-            <div class="floating-shape shape-3"></div>
-        </div>
-        
-        <div class="hero-content">
-            <div class="hero-title-container animate-on-scroll">
-                <div class="title-bg"></div>
-                <h1 class="hero-title">Preeth Ravani</h1>
-                <i class="fas fa-star spinning-star"></i>
-            </div>
-            
-            <div class="hero-subtitle animate-on-scroll">
-                <div class="subtitle-box">
-                    <p>Full-Stack Developer & Designer</p>
-                </div>
-            </div>
-            
-            <div class="hero-description animate-on-scroll">
-                <p>I create digital experiences that are bold, beautiful, and brutally effective. Welcome to my chaotic creative universe!</p>
-            </div>
-            
-            <div class="hero-cta animate-on-scroll">
-                <button class="cta-button">
-                    <span>GET TO KNOW ME</span>
-                    <i class="fas fa-arrow-down"></i>               
-                </button>
-            </div>
-        </div>
-    </section>
 
-    <!-- Education Section -->
-    <section id="education" class="education-section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <div class="header-box">
-                    <h2><i class="fas fa-graduation-cap"></i> EDUCATION</h2>
-                </div>
-            </div>
-            
-            <div class="timeline">
-                <div class="timeline-line"></div>
-                
-                <div class="timeline-item animate-on-scroll" data-side="right">
-                    <div class="timeline-content education-card-1">
-                        <div class="timeline-date">
-                            <i class="fas fa-calendar"></i>
-                            <span>2025-2029</span>
-                        </div>
-                        <h3>Bachelor of Information Technology</h3>
-                        <p class="institution">DJS College Of Engineering</p>
-                        <p class="description">College Freshman <br /> GPA: 9.57</p>
-                    </div>
-                    <div class="timeline-node">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                </div>
-                
-                <div class="timeline-item animate-on-scroll" data-side="left">
-                    <div class="timeline-content education-card-2">
-                        <div class="timeline-date">
-                            <i class="fas fa-calendar"></i>
-                            <span>2023-2025</span>
-                        </div>
-                        <h3>Class 12</h3>
-                        <p class="institution">Rahul International CBSE</p>
-                        <p class="description">Score: 87%</p>
-                    </div>
-                    <div class="timeline-node">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                </div>
-                
-                <div class="timeline-item animate-on-scroll" data-side="right">
-                    <div class="timeline-content education-card-3">
-                        <div class="timeline-date">
-                            <i class="fas fa-calendar"></i>
-                            <span>2011-2023</span>
-                        </div>
-                        <h3>Class 10</h3>
-                        <p class="institution">Vidya Vikasini School ICSE</p>
-                        <p class="description">Score: 95%</p>
-                    </div>
-                    <div class="timeline-node">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                </div>
-            </div>
+<canvas id="noise-canvas" aria-hidden="true"></canvas>
+
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+</div>
+
+<div class="scroll-progress" aria-hidden="true"><span id="scrollProgressBar"></span></div>
+
+<nav class="side-rail" aria-label="Section progress">
+  <button class="rail-dot" data-target="hero" aria-label="Go to Hero"><span>00</span></button>
+  <button class="rail-dot" data-target="about" aria-label="Go to About"><span>01</span></button>
+  <button class="rail-dot" data-target="education" aria-label="Go to Education"><span>02</span></button>
+  <button class="rail-dot" data-target="skills" aria-label="Go to Skills"><span>03</span></button>
+  <button class="rail-dot" data-target="projects" aria-label="Go to Projects"><span>04</span></button>
+  <button class="rail-dot" data-target="certifications" aria-label="Go to Certifications"><span>05</span></button>
+  <button class="rail-dot" data-target="achievements" aria-label="Go to Achievements"><span>06</span></button>
+  <button class="rail-dot" data-target="social" aria-label="Go to Social"><span>07</span></button>
+  <button class="rail-dot" data-target="contact" aria-label="Go to Contact"><span>08</span></button>
+</nav>
+
+<header class="site-header">
+  <a href="#hero" class="logo">
+    <span class="logo-mark">◆</span>
+    <span class="logo-text">PREETH<span class="logo-sub">/ PORTFOLIO</span></span>
+  </a>
+  <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+    <span class="menu-grid"><i></i><i></i><i></i><i></i></span>
+    <span class="menu-label">MENU</span>
+  </button>
+</header>
+
+<div class="menu-overlay" id="menuOverlay">
+  <ul class="menu-list">
+    <li><a href="#about" data-index="01">About</a></li>
+    <li><a href="#education" data-index="02">Education</a></li>
+    <li><a href="#skills" data-index="03">Skills</a></li>
+    <li><a href="#projects" data-index="04">Projects</a></li>
+    <li><a href="#certifications" data-index="05">Certifications</a></li>
+    <li><a href="#achievements" data-index="06">Achievements</a></li>
+    <li><a href="#contact" data-index="08">Contact</a></li>
+  </ul>
+  <div class="menu-footer">
+    <span>BASED IN INDIA</span>
+    <span class="dot-live"></span>
+  </div>
+</div>
+
+<main id="top">
+
+  <section class="hero" id="hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-glow" id="heroGlow" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <p class="eyebrow reveal-line"><span class="eyebrow-index">00</span> HELLO, I'M PREETH</p>
+
+      <h1 class="hero-title">
+        <span class="line" data-line="1"><span class="word">DESIGN.</span></span>
+        <span class="line" data-line="2"><span class="word">CODE.</span></span>
+        <span class="line" data-line="3"><span class="word">CREATE.</span></span>
+      </h1>
+
+      <div class="hero-sub-row">
+        <p class="hero-sub reveal-line">
+          Full-stack developer &amp; engineering student building clean,
+          purposeful digital solution — from scratch to deployed interfaces.
+        </p>
+        <a href="#projects" class="btn btn-primary magnetic">
+          <span>Explore My Work</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H4M12 2V10" stroke="currentColor" stroke-width="1.4"/></svg>
+        </a>
+      </div>
+    </div>
+
+<div class="hero-visual" id="heroVisual">
+  <div class="nothing-clock-container">
+    <div class="clock-display-panel">
+      <div class="silkscreen-time" id="silkscreenClock">
+        <span class="time-part hours">00</span>
+        <span class="time-blink">:</span>
+        <span class="time-part minutes">00</span>
+        <span class="time-blink">:</span>
+        <span class="time-part seconds">00</span>
+      </div>
+      <span class="corner-red-dot"></span>
+    </div>
+    <div class="silkscreen-date" id="silkscreenDate">SAT 25.04.2026</div>
+  </div>
+</div>
+
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-dot meta-dot--live"></span>
+        <span>AVAILABLE FOR PROJECTS</span>
+      </div>
+      <div class="meta-item meta-item--right">
+        <span>BASED IN INDIA</span>
+        <span class="meta-dot meta-dot--red"></span>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <span>SCROLL</span>
+      <span class="scroll-line"><i></i></span>
+    </div>
+  </section>
+
+  <section class="section about" id="about">
+    <div class="section-head">
+      <p class="section-index">01</p>
+      <p class="section-label">ABOUT ME</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card-wrap">
+        <div class="about-card about-card--back" aria-hidden="true"></div>
+        <div class="about-card about-card--front" id="aboutCard">
+          <div class="about-photo">
+            <img src="Preeth.jpg" alt="Preeth" class="photo-mark">
+            <svg viewBox="0 0 200 240" class="photo-mark"><rect x="1" y="1" width="198" height="238" rx="18" fill="#161616" stroke="#2A2A2A"/><circle cx="100" cy="92" r="38" fill="#232323"/><path d="M40 210c8-42 40-64 60-64s52 22 60 64" fill="#232323"/></svg>
+            <span class="photo-badge"></span>
+          </div>
+          <div class="about-photo-caption">
+            <span>PROBLEM → PROTOTYPE → PRODUCT</span>
+          </div>
         </div>
-    </section>
+        <span class="rotating-text" id="rotatingText" aria-hidden="true">
+          <svg viewBox="0 0 200 200"><path id="circlePath" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0" fill="none"/><text><textPath href="#circlePath">AVAILABLE FOR WORK • OPEN TO COLLAB • AVAILABLE FOR WORK • OPEN TO COLLAB • </textPath></text></svg>
+        </span>
+      </div>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills-section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <div class="header-box">
-                    <h2><i class="fas fa-bolt"></i> SKILLS & EXPERTISE</h2>
-                </div>
-            </div>
-            
-            <div class="skills-grid">
-                <div class="skill-category animate-on-scroll">
-                    <div class="skill-card frontend-card">
-                        <div class="skill-header">
-                            <i class="fas fa-palette"></i>
-                            <h3>Frontend</h3>
-                        </div>
-                        <div class="skill-list">
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>React.js</span>
-                                    <span class="skill-percentage">25%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="25"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>HTML</span>
-                                    <span class="skill-percentage">90%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="90"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>CSS</span>
-                                    <span class="skill-percentage">90%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="90"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>JavaScript</span>
-                                    <span class="skill-percentage">60%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="60"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skill-category animate-on-scroll">
-                    <div class="skill-card backend-card">
-                        <div class="skill-header">
-                            <i class="fas fa-code"></i>
-                            <h3>Backend</h3>
-                        </div>
-                        <div class="skill-list">
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>Node.js</span>
-                                    <span class="skill-percentage">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="0"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>Python</span>
-                                    <span class="skill-percentage">30%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="30"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>SQL</span>
-                                    <span class="skill-percentage">40%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="40"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>MongoDB</span>
-                                    <span class="skill-percentage">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="0"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skill-category animate-on-scroll">
-                    <div class="skill-card tools-card">
-                        <div class="skill-header">
-                            <i class="fas fa-rocket"></i>
-                            <h3>Tools & Others</h3>
-                        </div>
-                        <div class="skill-list">
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>Git/GitHub</span>
-                                    <span class="skill-percentage">95%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="95"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>Docker</span>
-                                    <span class="skill-percentage">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="0"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>Vercel</span>
-                                    <span class="skill-percentage">70%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="70"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>Figma</span>
-                                    <span class="skill-percentage">60%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="60"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="about-content">
+        <h2 class="about-heading reveal-words">I craft solutions that are practical by nature, intuitive by design, and impactful by result.</h2>
+        <p class="about-text reveal-fade">
+          I'm an engineering student who turns ideas into real, working products. With an upcoming foundation in
+          data structures, database systems and the MERN stack, I enjoy the full arc of building software —
+          sketching the logic, shaping the interface, and shipping something people can actually use.
+        </p>
+        <a href="#contact" class="link-underline">Know more about me
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H4M12 2V10" stroke="currentColor" stroke-width="1.4"/></svg>
+        </a>
+
+        <div class="stat-grid">
+          <div class="stat-item"><span class="stat-number" data-target="2" data-suffix="+">0</span><span class="stat-label">Years Learning</span></div>
+          <div class="stat-item"><span class="stat-number" data-target="2" data-suffix="+">0</span><span class="stat-label">Projects Underway</span></div>
+          <div class="stat-item"><span class="stat-number" data-target="5" data-suffix="+">0</span><span class="stat-label">Core Technologies</span></div>
+          <div class="stat-item"><span class="stat-number" data-target="100" data-suffix="%">0</span><span class="stat-label">Dedication</span></div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects-section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <div class="header-box">
-                    <h2><i class="fas fa-rocket"></i> MY PROJECTS</h2>
-                </div>
-            </div>
-            
-            <div class="projects-grid">                
-                <div class="project-card animate-on-scroll project-card-1">
-                    <div class="project-header">
-                        <h3>Project 1</h3>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="project-description">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dictum nisl tellus, dictum bibendum nunc egestas non. Etiam consequat fermentum sapien ut feugiat.                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">Stripe</span>
-                    </div>
-                    <div class="project-buttons">
-                        <button class="project-btn code-btn">
-                            <i class="fab fa-github"></i>
-                            CODE
-                        </button>
-                        <button class="project-btn demo-btn">
-                            <i class="fas fa-external-link-alt"></i>
-                            DEMO
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="project-card animate-on-scroll project-card-2">
-                    <div class="project-header">
-                        <h3>Project 2</h3>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="project-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dictum nisl tellus, dictum bibendum nunc egestas non. Etiam consequat fermentum sapien ut feugiat.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Next.js</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">OpenAI</span>
-                        <span class="tech-tag">MongoDB</span>
-                    </div>
-                    <div class="project-buttons">
-                        <button class="project-btn code-btn">
-                            <i class="fab fa-github"></i>
-                            CODE
-                        </button>
-                        <button class="project-btn demo-btn">
-                            <i class="fas fa-external-link-alt"></i>
-                            DEMO
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="project-card animate-on-scroll project-card-3">
-                    <div class="project-header">
-                        <h3>Project 3</h3>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="project-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dictum nisl tellus, dictum bibendum nunc egestas non. Etiam consequat fermentum sapien ut feugiat.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">D3.js</span>
-                        <span class="tech-tag">Express</span>
-                        <span class="tech-tag">Redis</span>
-                    </div>
-                    <div class="project-buttons">
-                        <button class="project-btn code-btn">
-                            <i class="fab fa-github"></i>
-                            CODE
-                        </button>
-                        <button class="project-btn demo-btn">
-                            <i class="fas fa-external-link-alt"></i>
-                            DEMO
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="project-card animate-on-scroll project-card-4">
-                    <div class="project-header">
-                        <h3>Project 4</h3>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="project-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dictum nisl tellus, dictum bibendum nunc egestas non. Etiam consequat fermentum sapien ut feugiat.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React Native</span>
-                        <span class="tech-tag">Firebase</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">MongoDB</span>
-                    </div>
-                    <div class="project-buttons">
-                        <button class="project-btn code-btn">
-                            <i class="fab fa-github"></i>
-                            CODE
-                        </button>
-                        <button class="project-btn demo-btn">
-                            <i class="fas fa-external-link-alt"></i>
-                            DEMO
-                        </button>
-                    </div>
-                </div>
-            </div>
+ <section class="section education" id="education">
+  <div class="section-head">
+    <span class="section-index">02</span>
+    <span class="section-label">EDUCATION</span>
+    <span class="heading-node"></span>
+  </div>
+
+  <div class="timeline-scroll-track">
+    <div class="timeline" id="timeline">
+      
+      <div class="timeline-track-center"></div>
+
+      <svg class="timeline-trail" id="timelineTrail" aria-hidden="true">
+        <defs>
+          <clipPath id="timelineClip" clipPathUnits="userSpaceOnUse">
+            <rect id="timelineClipRect" x="0" y="0" width="0" height="0" />
+          </clipPath>
+        </defs>
+        <path id="timelinePathBase" class="trail-base" fill="none"></path>
+        <path id="timelinePathFill" class="trail-fill" fill="none" clip-path="url(#timelineClip)"></path>
+      </svg>
+
+      <div class="timeline-item" data-status="current" data-align="left">
+        <div class="timeline-card">
+          <span class="timeline-node"></span>
+          <div class="timeline-card-top">
+            <span class="timeline-year">2025 — 2029 · PRESENT</span>
+            <span class="timeline-dot timeline-dot--live" aria-hidden="true"></span>
+          </div>
+          <h3>B.Tech Information Technology</h3>
+          <p>DJ Sanghvi College of Engineering</p>
+          <span class="timeline-badge">GPA 9.57</span>
         </div>
-    </section>
+      </div>
 
-    <!-- Certifications Section -->
-    <section id="certifications" class="certifications-section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <div class="header-box">
-                    <h2><i class="fas fa-trophy"></i> CERTIFICATIONS</h2>
-                </div>
-            </div>
-            
-            <div class="certifications-grid">
-                <div class="cert-card animate-on-scroll cert-card-1">
-                    <div class="cert-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3>Learning the Javascript Language</h3>
-                    <p class="cert-issuer">LinkedIn Learning</p>
-                    <span class="cert-year">2025</span>
-                </div>
-                
-                <div class="cert-card animate-on-scroll cert-card-2">
-                    <div class="cert-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3>HTML And CSS Mastery</h3>
-                    <p class="cert-issuer">Coddy</p>
-                    <span class="cert-year">2025</span>
-                </div>
-                
-                <div class="cert-card animate-on-scroll cert-card-3">
-                    <div class="cert-icon">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <h3>Full Stack Web Development</h3>
-                    <p class="cert-issuer">Scrimba</p>
-                    <span class="cert-year">2025</span>
-                </div>
-
-             <div class="cert-card animate-on-scroll cert-card-4">
-                    <div class="cert-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>Introduction to Javascript</h3>
-                    <p class="cert-issuer">Coddy</p>
-                    <span class="cert-year">2025</span>
-                </div>
-            </div>
-            
-            <div class="achievements-section animate-on-scroll">
-                <div class="achievements-header">
-                    <h3>ACHIEVEMENTS & HIGHLIGHTS</h3>
-                </div>
-                <div class="achievements-grid">
-                    <div class="achievement-item">
-                        <span>Achievement 1</span>
-                    </div>
-                    <div class="achievement-item">
-                        <span>Achievement 2</span>
-                    </div>
-                    <div class="achievement-item">
-                        <span>Achievement 3</span>
-                    </div>
-                    <div class="achievement-item">
-                        <span>Achievement 4</span>
-                    </div>
-                    <div class="achievement-item">
-                        <span>Achievement 5</span>
-                    </div>
-                </div>
-            </div>
+      <div class="timeline-item" data-status="done" data-align="right">
+        <div class="timeline-card">
+          <span class="timeline-node"></span>
+          <div class="timeline-card-top">
+            <span class="timeline-year">2023 — 2025</span>
+          </div>
+          <h3>CBSE Class 12th</h3>
+          <p>Rahul International School</p>
+          <span class="timeline-badge">87%</span>
         </div>
-    </section>
+      </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <div class="header-box">
-                    <h2><i class="fas fa-envelope"></i> LET'S CONNECT</h2>
-                </div>
-            </div>
-            
-            <div class="contact-grid">
-                <div class="contact-info animate-on-scroll">
-                    <div class="contact-card">
-                        <h3>GET IN TOUCH</h3>
-                        <p>Ready to create something amazing together? Drop me a line and let's make magic happen!</p>
-                        
-                        <div class="contact-details">
-                            <div class="contact-item">
-                                <i class="fas fa-envelope"></i>
-                                <span>preethravani@email.com</span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-phone"></i>
-                                <span>+91 9324757227</span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Mumbai, India</span>
-                            </div>
-                        </div>
-                        
-                        <div class="social-links">
-                            <a href="https://github.com/PreethRavani" class="social-link github-link">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/preeth-ravani-60833b375" class="social-link linkedin-link">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="https://wa.me/9324757227?text=Hello%20" class="social-link whatsapp-link">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form animate-on-scroll">
-                    <div class="form-card">
-                        <h3>SEND MESSAGE</h3>
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <input type="text" id="name" name="name" placeholder="Your Name" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" id="email" name="email" placeholder="Your Email" required>
-                            </div>
-                            <div class="form-group">
-                                <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-                            </div>
-                            <button type="submit" class="submit-btn">
-                                <i class="fas fa-paper-plane"></i>
-                                SEND MESSAGE
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer animate-on-scroll">
-                <div class="footer-content">
-                    <p><i class="fas fa-heart"></i> Made with love by Preeth Ravani</p>
-                    <p>© 2026 All Rights Reserved</p>
-                </div>
-            </div>
+      <div class="timeline-item" data-status="done" data-align="left">
+        <div class="timeline-card">
+          <span class="timeline-node"></span>
+          <div class="timeline-card-top">
+            <span class="timeline-year">2011 — 2023</span>
+          </div>
+          <h3>ICSE Class 10th</h3>
+          <p>Vidya Vikasini School</p>
+          <span class="timeline-badge">95%</span>
         </div>
-    </section>
+      </div>
 
-    <script src="script.js"></script>
+    </div>
+  </div>
+</section>
+
+<section class="section skills" id="skills">
+    <div class="section-head">
+      <p class="section-index">03</p>
+      <p class="section-label">SKILLS</p>
+    </div>
+
+    <div class="skills-groups">
+
+      <div class="skills-group">
+        <p class="skills-group-label"><span class="skills-group-dot"></span>FRONTEND</p>
+        <div class="skills-card-grid">
+          <div class="skill-card" data-percent="90">
+            <div class="skill-card-top"><h3>HTML &amp; CSS</h3><span class="skill-percent">90%</span></div>
+            <div class="skill-dots"></div>
+          </div>
+          <div class="skill-card" data-percent="70">
+            <div class="skill-card-top"><h3>JavaScript</h3><span class="skill-percent">70%</span></div>
+            <div class="skill-dots"></div>
+          </div>
+          <div class="skill-card" data-percent="28">
+            <div class="skill-card-top"><h3>React</h3><span class="skill-percent">28%</span></div>
+            <div class="skill-dots"></div>
+          </div>
+          <div class="skill-card" data-percent="50">
+            <div class="skill-card-top"><h3>Responsive / UI Design</h3><span class="skill-percent">50%</span></div>
+            <div class="skill-dots"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skills-group">
+        <p class="skills-group-label"><span class="skills-group-dot"></span>BACKEND</p>
+        <div class="skills-card-grid">
+          <div class="skill-card" data-percent="0">
+            <div class="skill-card-top"><h3>Node.js &amp; Express</h3><span class="skill-percent">0%</span></div>
+            <div class="skill-dots"></div>
+          </div>
+          <div class="skill-card" data-percent="30">
+            <div class="skill-card-top"><h3>Python</h3><span class="skill-percent">30%</span></div>
+            <div class="skill-dots"></div>
+          </div>
+          <div class="skill-card" data-percent="40">
+            <div class="skill-card-top"><h3>SQL</h3><span class="skill-percent">40%</span></div>
+            <div class="skill-dots"></div>
+          </div>
+          <div class="skill-card" data-percent="0">
+            <div class="skill-card-top"><h3>MongoDB</h3><span class="skill-percent">0%</span></div>
+            <div class="skill-dots"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skills-group">
+        <p class="skills-group-label"><span class="skills-group-dot"></span>TOOLS</p>
+        <div class="skills-card-grid">
+          <div class="skill-card" data-percent="95">
+            <div class="skill-card-top"><h3>Git &amp; GitHub</h3><span class="skill-percent">95%</span></div>
+            <div class="skill-dots"></div>
+          </div>
+          <div class="skill-card" data-percent="70">
+            <div class="skill-card-top"><h3>Vercel</h3><span class="skill-percent">70%</span></div>
+            <div class="skill-dots"></div>
+          </div>
+          <div class="skill-card" data-percent="60">
+            <div class="skill-card-top"><h3>Figma</h3><span class="skill-percent">60%</span></div>
+            <div class="skill-dots"></div>
+          </div>
+          <div class="skill-card" data-percent="0">
+            <div class="skill-card-top"><h3>Docker</h3><span class="skill-percent">0%</span></div>
+            <div class="skill-dots"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</section>
+
+  <section class="section projects" id="projects">
+    <div class="section-head">
+      <p class="section-index">04</p>
+      <p class="section-label">PROJECTS</p>
+      <p class="section-sub">FEATURED WORK</p>
+      <div class="projects-nav">
+        <button class="proj-arrow" id="projPrev" aria-label="Previous project">←</button>
+        <button class="proj-arrow" id="projNext" aria-label="Next project">→</button>
+      </div>
+    </div>
+
+    <div class="projects-track-wrap">
+      <div class="projects-track" id="projectsTrack">
+
+        <article class="project-card">
+          <div class="project-media" data-tint="1">
+            <span class="project-index">01</span>
+            <span class="project-scan"></span>
+          </div>
+          <div class="project-info">
+            <h3>Project 1</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dictum nisl tellus, dictum bibendum nunc egestas non. Etiam consequat fermentum sapien ut feugiat.</p>
+            <div class="project-tags"><span>MERN</span><span>System Design</span><span>DBMS</span></div>
+            <div class="project-links">
+              <a href="#" class="proj-link">Case Study</a>
+              <a href="#" class="proj-link">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-media" data-tint="2">
+            <span class="project-index">02</span>
+            <span class="project-scan"></span>
+          </div>
+          <div class="project-info">
+            <h3>Project 2</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dictum nisl tellus, dictum bibendum nunc egestas non. Etiam consequat fermentum sapien ut feugiat.</p>
+            <div class="project-tags"><span>React</span><span>Node.js</span><span>MongoDB</span></div>
+            <div class="project-links">
+              <a href="#" class="proj-link">Live Demo</a>
+              <a href="#" class="proj-link">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-media" data-tint="3">
+            <span class="project-index">03</span>
+            <span class="project-scan"></span>
+          </div>
+          <div class="project-info">
+            <h3>Project 3</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dictum nisl tellus, dictum bibendum nunc egestas non. Etiam consequat fermentum sapien ut feugiat.</p>
+            <div class="project-tags"><span>React</span><span>Express</span><span>Sockets</span></div>
+            <div class="project-links">
+              <a href="#" class="proj-link">Live Demo</a>
+              <a href="#" class="proj-link">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-media" data-tint="4">
+            <span class="project-index">04</span>
+            <span class="project-scan"></span>
+          </div>
+          <div class="project-info">
+            <h3>Project 4</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dictum nisl tellus, dictum bibendum nunc egestas non. Etiam consequat fermentum sapien ut feugiat.</p>
+            <div class="project-tags"><span>JavaScript</span><span>API</span><span>Chart.js</span></div>
+            <div class="project-links">
+              <a href="#" class="proj-link">Live Demo</a>
+              <a href="#" class="proj-link">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section certifications" id="certifications">
+    <div class="section-head">
+      <p class="section-index">05</p>
+      <p class="section-label">CERTIFICATIONS</p>
+    </div>
+
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-face cert-face--front">
+          <span class="cert-glyph">⬡</span>
+          <h3>Learning the Javascript Language</h3>
+          <p>LinkedIn Learning · 2025</p>
+        </div>
+        <div class="cert-face cert-face--back">
+          <span class="cert-verify">✓ VERIFIED</span>
+          <p></p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-face cert-face--front">
+          <span class="cert-glyph">⬡</span>
+          <h3>HTML And CSS Mastery</h3>
+          <p>Coddy · 2025</p>
+        </div>
+        <div class="cert-face cert-face--back">
+          <span class="cert-verify">✓ VERIFIED</span>
+          <p>Data structures, ES6+, functional programming patterns.</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-face cert-face--front">
+          <span class="cert-glyph">⬡</span>
+          <h3>Full Stack Web Development</h3>
+          <p>Scrimba · 2025</p>
+        </div>
+        <div class="cert-face cert-face--back">
+          <span class="cert-verify">✓ VERIFIED</span>
+          <p>Hooks, state management, routing, production builds.</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-face cert-face--front">
+          <span class="cert-glyph">⬡</span>
+          <h3>Introduction to Javascript</h3>
+          <p>Coddy · 2025</p>
+        </div>
+        <div class="cert-face cert-face--back">
+          <span class="cert-verify">✓ VERIFIED</span>
+          <p>Flexbox, grid, mobile-first design systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section achievements" id="achievements">
+    <div class="section-head">
+      <p class="section-index">06</p>
+      <p class="section-label">ACHIEVEMENTS</p>
+    </div>
+
+    <div class="achieve-grid">
+      <div class="achieve-card">
+        <span class="achieve-glyph">▲</span>
+        <span class="achieve-number" data-target="0" data-suffix="+">0</span>
+        <span class="achieve-label">Achievement 1 (to be added soon)</span>
+      </div>
+      <div class="achieve-card">
+        <span class="achieve-glyph">●</span>
+        <span class="achieve-number" data-target="0" data-suffix="+">0</span>
+        <span class="achieve-label">Achievement 2 (to be added soon)</span>
+      </div>
+      <div class="achieve-card">
+        <span class="achieve-glyph">◆</span>
+        <span class="achieve-number" data-target="0" data-suffix="">0</span>
+        <span class="achieve-label">Achievement 3 (to be added soon)</span>
+      </div>
+      <div class="achieve-card">
+        <span class="achieve-glyph">■</span>
+        <span class="achieve-number" data-target="0" data-suffix="">0</span>
+        <span class="achieve-label">Achievement 4 (to be added soon)</span>
+      </div>
+    </div>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>BUILD IN PUBLIC</span><span>·</span><span>SHIP OFTEN</span><span>·</span><span>DESIGN WITH INTENT</span><span>·</span>
+        <span>BUILD IN PUBLIC</span><span>·</span><span>SHIP OFTEN</span><span>·</span><span>DESIGN WITH INTENT</span><span>·</span>
+      </div>
+    </div>
+  </section>
+
+<section class="section social" id="social">
+  <div class="section-head">
+    <p class="section-index">07</p>
+    <p class="section-label">SOCIAL LINKS</p>
+  </div>
+
+  <div class="social-grid">
+    <a href="#" class="social-btn magnetic">
+      <span class="social-icon">
+        <i class="fab fa-github"></i>
+      </span>
+      <span class="social-name">GitHub</span>
+    </a>
+
+    <a href="#" class="social-btn magnetic">
+      <span class="social-icon">
+        <i class="fab fa-linkedin-in"></i>
+      </span>
+      <span class="social-name">LinkedIn</span>
+    </a>
+
+    <a href="#" class="social-btn magnetic">
+      <span class="social-icon">
+        <i class="fab fa-x-whatsapp"></i>
+      </span>
+      <span class="social-name">Whatsapp</span>
+    </a>
+
+    <a href="#" class="social-btn magnetic">
+      <span class="social-icon">
+        <i class="fab fa-instagram"></i>
+      </span>
+      <span class="social-name">Instagram</span>
+    </a>
+  </div>
+</section>
+
+
+  <section class="section contact" id="contact">
+    <div class="section-head">
+      <p class="section-index">08</p>
+      <p class="section-label">CONTACT</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-intro">
+        <h2 class="reveal-words">Let's build something amazing together.</h2>
+        <p>Have a project in mind, or just want to say hi? Reach out — I read every message.</p>
+        <a href="mailto:hello@preeth.dev" class="contact-detail">
+          <span class="detail-icon">@</span> preethravani@gmail.com
+        </a>
+        <a href="tel:+919324757227" class="contact-detail">
+          <span class="detail-icon">#</span> +91 9324757227
+        </a>
+      </div>
+
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <input type="text" id="fName" name="name" required placeholder=" ">
+            <label for="fName">Your Name</label>
+          </div>
+          <div class="field">
+            <input type="email" id="fEmail" name="email" required placeholder=" ">
+            <label for="fEmail">Your Email</label>
+          </div>
+        </div>
+        <div class="field">
+          <input type="text" id="fSubject" name="subject" placeholder=" ">
+          <label for="fSubject">Subject</label>
+        </div>
+        <div class="field">
+          <textarea id="fMessage" name="message" rows="4" required placeholder=" "></textarea>
+          <label for="fMessage">Your Message</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-submit magnetic">
+          <span class="btn-label-idle">Send Message</span>
+          <span class="btn-label-sent">Message Sent ✓</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H4M12 2V10" stroke="currentColor" stroke-width="1.4"/></svg>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <p class="footer-index">09 / FOOTER</p>
+      <button class="back-to-top magnetic" id="backToTop" aria-label="Back to top">
+        <span>Back to Top</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12V2M7 2L2 7M7 2L12 7" stroke="currentColor" stroke-width="1.4"/></svg>
+      </button>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Preeth. All rights reserved.</p>
+      <p>Designed with minimalism. Built with intent.</p>
+    </div>
+  </footer>
+
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>
