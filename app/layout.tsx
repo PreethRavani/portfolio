@@ -17,7 +17,7 @@ const doto = Doto({ subsets: ["latin"], variable: "--font-doto", display: "swap"
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "swap" });
 const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"], variable: "--font-ibm-plex-mono", display: "swap" });
 
-const BASE_URL = "https://preethravani-portfolio.vercel.app";
+const BASE_URL = "https://preeth.is-a.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
