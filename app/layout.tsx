@@ -80,11 +80,15 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.png", type: "image/png" },
-      { url: "/images/favicon.png", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon.png", sizes: "1000x1000", type: "image/png" },
     ],
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/apple-icon.png", sizes: "192x192", type: "image/png" },
+    ],
   },
   openGraph: {
     title: "Preeth Ravani | Full-Stack Software Engineer & Creative Developer",
@@ -92,7 +96,7 @@ export const metadata: Metadata = {
       "Interactive digital portfolio of Preeth Ravani — Full-Stack Developer & IT Engineering student building clean, purposeful digital solutions with Next.js, React, and TypeScript.",
     type: "profile",
     locale: "en_US",
-    siteName: "Preeth Ravani — Developer Portfolio",
+    siteName: "Preeth Ravani",
     url: BASE_URL,
     images: [
       {
@@ -161,8 +165,9 @@ const jsonLdPerson = {
 const jsonLdWebSite = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Preeth Ravani Portfolio",
-  url: BASE_URL,
+  name: "Preeth Ravani",
+  alternateName: ["Preeth Ravani Portfolio", "Preeth", "preeth.is-a.dev"],
+  url: "https://preeth.is-a.dev/",
   description:
     "Official interactive developer portfolio of Preeth Ravani — Information Technology Engineer and Full-Stack Developer.",
   author: {
